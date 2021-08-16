@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admins;
+use App\Models\Current_income;
 use Illuminate\Http\Request;
 
-class AdminsController extends Controller
+class CurrentIncomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        $admins = Admins::all();
-        return response()->json($admins);
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class AdminsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admins  $admins
+     * @param  \App\Models\Current_income  $current_income
      * @return \Illuminate\Http\Response
      */
-    public function show(Admins $admins)
+    public function show(Current_income $current_income)
     {
         //
     }
@@ -53,10 +52,10 @@ class AdminsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admins  $admins
+     * @param  \App\Models\Current_income  $current_income
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admins $admins)
+    public function edit(Current_income $current_income)
     {
         //
     }
@@ -65,10 +64,10 @@ class AdminsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admins  $admins
+     * @param  \App\Models\Current_income  $current_income
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admins $admins)
+    public function update(Request $request, Current_income $current_income)
     {
         //
     }
@@ -76,10 +75,10 @@ class AdminsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admins  $admins
+     * @param  \App\Models\Current_income  $current_income
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admins $admins)
+    public function destroy(Current_income $current_income)
     {
         //
     }

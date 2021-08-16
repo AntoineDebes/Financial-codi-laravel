@@ -15,8 +15,10 @@ class ProductController extends Controller
     public function index()
     {
                
-        $students = Student::all();
-        return response()->json($students);
+        $product = Product::all();
+        return response()->json([
+        'success'=>true,
+        'products'=>$product],200);
     }
 
     /**

@@ -3,11 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Product;
-use Illuminate\Support\Str;
+use App\Models\Fixed_income;
+use Illuminate\support\Str;
 
-
-class ProductSeeder extends Seeder
+class Fixed_incomeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,8 +16,8 @@ class ProductSeeder extends Seeder
     public function run()
     {
         for($i=0;$i<10;$i++){
-            Product::create([
-                'title' => Str::random(10),
+            Fixed_income::create([
+                'title' => Str::random(10), 
                 'quantity' => 10,
                 'description' => Str::random(10),
                 'currency'=> '$',
