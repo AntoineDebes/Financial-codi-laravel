@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminsController;
+//also added
+use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +25,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/product',[ProductController::class, 'index']);
 Route::get('/admin',[AdminsController::class, 'index']);
+//added for auth
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::get('user-profile', [AuthController::class, 'userProfile']);
+});
+
