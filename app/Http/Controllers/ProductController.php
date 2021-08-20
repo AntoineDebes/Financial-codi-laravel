@@ -85,16 +85,19 @@ class ProductController extends Controller
      */
     public function destroy(Request $request)
     {
-        $id = $request->id;
+       
+        $ids = $request->id; 
+        
         try {
-           return Product::find($id)->each(function ($product, $key) {
+           Product::find($ids)->each(function ($product, $key) {
                 $product->delete();
-                return response()->json("success");
 
             }); 
+            return response()->json($ids);
+                 
         }
         catch(Exception $e) {
-            return  response()->json("failed");
+            return  response()->json($ids);
         }
     }
 }
