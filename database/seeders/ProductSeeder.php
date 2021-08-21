@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0;$i<10;$i++){
+        for($i=0;$i<30;$i++){
             Product::create([
                 'title' => Str::random(10),
                 'quantity' => 10,

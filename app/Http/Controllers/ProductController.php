@@ -79,11 +79,25 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request)
     {
-        //
+       
+        $ids = $request->id; 
+        
+        try {
+           Product::find($ids)->each(function ($product, $key) {
+                $product->delete();
+
+            }); 
+            return response()->json($ids);
+                 
+        }
+        catch(Exception $e) {
+            return  response()->json($ids);
+        }
     }
 }

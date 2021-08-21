@@ -25,7 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/product',[ProductController::class, 'index']);
 Route::get('/admin',[AdminsController::class, 'index']);
-//added for auth
+
 
 
 Route::group([
@@ -40,3 +40,4 @@ Route::group([
     Route::get('user-profile', [AuthController::class, 'userProfile']);
 });
 
+Route::delete('/product', [ProductController::class,'destroy']);
