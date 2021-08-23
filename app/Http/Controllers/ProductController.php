@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-               
+
         $product = Product::all();
         return response()->json([
         'success'=>true,
@@ -81,20 +82,22 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request)
     {
-       
-        $ids = $request->id; 
-        
+
+        // dd($request->all()); 
+        // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+        $ids = $request->ids;
+
         try {
            Product::find($ids)->each(function ($product, $key) {
                 $product->delete();
 
-            }); 
+            });
             return response()->json($ids);
-                 
+
         }
         catch(Exception $e) {
             return  response()->json($ids);
