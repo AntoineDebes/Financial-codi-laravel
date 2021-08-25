@@ -14,7 +14,11 @@ class CurrentIncomeController extends Controller
      */
     public function index()
     {
-        //
+
+        $current_income = Current_income::all();
+        return response()->json([
+        'success'=>true,
+        'current income'=>$current_income],200);
     }
 
     /**
@@ -78,8 +82,23 @@ class CurrentIncomeController extends Controller
      * @param  \App\Models\Current_income  $current_income
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Current_income $current_income)
+    public function destroy(Request $request)
     {
-        //
+
+        // dd($request->all()); 
+        // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+        $ids = $request->ids;
+
+        try {
+            Current_income::find($ids)->each(function ($product, $key) {
+                $product->delete();
+
+            });
+            return response()->json($ids);
+
+        }
+        catch(Exception $e) {
+            return  response()->json($ids);
+        }
     }
 }
