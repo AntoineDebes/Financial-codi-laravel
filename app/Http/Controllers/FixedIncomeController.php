@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fixed_income;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class FixedIncomeController extends Controller
 {
@@ -14,11 +15,11 @@ class FixedIncomeController extends Controller
      */
     public function index()
     {
-
-        $fixed_income = Fixed_income::all();
+        
+        $items = Fixed_income::all();
         return response()->json([
         'success'=>true,
-        'fixed income'=>$fixed_income],200);
+        'items'=>$items],200);
     }
 
     /**
@@ -90,8 +91,8 @@ class FixedIncomeController extends Controller
         $ids = $request->ids;
 
         try {
-            Fixed_income::find($ids)->each(function ($product, $key) {
-                $product->delete();
+            Fixed_income::find($ids)->each(function ($item, $key) {
+                $item->delete();
 
             });
             return response()->json($ids);

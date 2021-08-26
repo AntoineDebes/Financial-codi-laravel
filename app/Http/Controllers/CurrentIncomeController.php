@@ -18,7 +18,7 @@ class CurrentIncomeController extends Controller
         $current_income = Current_income::all();
         return response()->json([
         'success'=>true,
-        'current income'=>$current_income],200);
+        'items'=>$current_income],200);
     }
 
     /**
@@ -90,8 +90,8 @@ class CurrentIncomeController extends Controller
         $ids = $request->ids;
 
         try {
-            Current_income::find($ids)->each(function ($product, $key) {
-                $product->delete();
+            Current_income::find($ids)->each(function ($item, $key) {
+                $item->delete();
 
             });
             return response()->json($ids);

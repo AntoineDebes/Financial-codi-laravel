@@ -18,7 +18,7 @@ class CurrentExpenseController extends Controller
         $current_expense = Current_expense::all();
         return response()->json([
         'success'=>true,
-        'current expense'=>$current_expense],200);
+        'items'=>$current_expense],200);
     }
 
     /**
@@ -90,8 +90,8 @@ class CurrentExpenseController extends Controller
         $ids = $request->ids;
 
         try {
-            Current_expense::find($ids)->each(function ($product, $key) {
-                $product->delete();
+            Current_expense::find($ids)->each(function ($item, $key) {
+                $item->delete();
 
             });
             return response()->json($ids);

@@ -15,10 +15,10 @@ class FixedExpenseController extends Controller
     public function index()
     {
 
-        $fixed_expense = Fixed_expense::all();
+        $items = Fixed_expense::all();
         return response()->json([
         'success'=>true,
-        'fixed expense'=>$fixed_expense],200);
+        'items'=>$items],200);
     }
 
     /**
@@ -90,8 +90,8 @@ class FixedExpenseController extends Controller
         $ids = $request->ids;
 
         try {
-            Fixed_expense::find($ids)->each(function ($product, $key) {
-                $product->delete();
+            Fixed_expense::find($ids)->each(function ($item, $key) {
+                $item->delete();
 
             });
             return response()->json($ids);

@@ -4,6 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\FixedIncomeController;
+use App\Http\Controllers\FixedExpenseController;
+use App\Http\Controllers\CurrentIncomeController;
+use App\Http\Controllers\CurrentExpenseController;
+
 //also added
 use App\Http\Controllers\AuthController;
 
@@ -25,6 +30,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/product',[ProductController::class, 'index']);
 Route::get('/admin',[AdminsController::class, 'index']);
+Route::get('/fixedincome',[FixedIncomeController::class,'index']);
+Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
+Route::get('/currentincome',[CurrentIncomeController::class,'index']);
+Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
 
 
 
@@ -40,4 +49,8 @@ Route::group([
     Route::get('user-profile', [AuthController::class, 'userProfile']);
 });
 
-Route::delete('/product', [ProductController::class,'destroy']);
+Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);
+Route::delete('/fixedexpense',[FixedExpenseController::class,'destroy']);
+Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
+Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
+
