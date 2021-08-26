@@ -39,7 +39,16 @@ class CurrentIncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+        $recurring_income = new Current_income();
+        $recurring_income->title = $inputs['title'];
+        $recurring_income->description = $inputs['description'];
+        $recurring_income->quantity= $inputs['quantity'];
+        $recurring_income->currency=$inputs['currency'];
+        $recurring_income->category=$inputs['category'];
+ 
+        $recurring_income->save();
+        return response()->json(['success'=>true],200);
     }
 
     /**

@@ -39,7 +39,16 @@ class CurrentExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+        $recurring_expense = new Current_expense();
+        $recurring_expense ->title = $inputs['title'];
+        $recurring_expense ->description = $inputs['description'];
+        $recurring_expense ->quantity= $inputs['quantity'];
+        $recurring_expense ->currency=$inputs['currency'];
+        $recurring_expense ->category=$inputs['category'];
+ 
+        $recurring_expense ->save();
+        return response()->json(['success'=>true],200);
     }
 
     /**

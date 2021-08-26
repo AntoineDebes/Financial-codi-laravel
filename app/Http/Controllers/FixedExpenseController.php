@@ -39,7 +39,21 @@ class FixedExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // try{
+        $inputs = $request->all();
+        $fixed_expense = new Fixed_expense();
+        $fixed_expense->title = $inputs['title'];
+        $fixed_expense->description = $inputs['description'];
+        $fixed_expense->quantity= $inputs['quantity'];
+        $fixed_expense->currency=$inputs['currency'];
+        $fixed_expense->category=$inputs['category'];
+        $fixed_expense->save();
+
+        return response()->json(['success'=>true],200);
+    // }
+    // catch($exception){
+    //     return response()->json(['success'=>false , 'message'=>$exception->getMessage()],500)
+    // }
     }
 
     /**

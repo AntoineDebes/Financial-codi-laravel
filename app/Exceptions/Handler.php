@@ -39,3 +39,10 @@ class Handler extends ExceptionHandler
         });
     }
 }
+
+// public function register()
+// {
+//     $this->renderable(function (Throwable $e) {
+//         return response()->json(['message'=>$e->getmessage()],);
+//     });
+// }

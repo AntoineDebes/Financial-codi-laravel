@@ -53,4 +53,7 @@ Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);
 Route::delete('/fixedexpense',[FixedExpenseController::class,'destroy']);
 Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
 Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
-
+Route::post('postfixedexpense',[FixedExpenseController::class,'store']);
+Route::post('postfixedincome',[FixedIncomeController::class,'store']);
+Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
+Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);

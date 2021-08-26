@@ -40,7 +40,16 @@ class FixedIncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $inputs = $request->all();
+       $fixed_income = new Fixed_income();
+       $fixed_income->title = $inputs['title'];
+       $fixed_income->description = $inputs['description'];
+       $fixed_income->quantity= $inputs['quantity'];
+       $fixed_income->currency=$inputs['currency'];
+       $fixed_income->category=$inputs['category'];
+
+       $fixed_income->save();
+       return response()->json(['success'=>true],200);
     }
 
     /**
