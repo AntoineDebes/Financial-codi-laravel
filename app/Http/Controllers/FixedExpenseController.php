@@ -46,7 +46,7 @@ class FixedExpenseController extends Controller
         $fixed_expense->description = $inputs['description'];
         $fixed_expense->quantity= $inputs['quantity'];
         $fixed_expense->currency=$inputs['currency'];
-        $fixed_expense->category=$inputs['category'];
+        $fixed_expense->category_id=$inputs['category_id'];
         $fixed_expense->save();
 
         return response()->json(['success'=>true],200);

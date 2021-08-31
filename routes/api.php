@@ -8,7 +8,7 @@ use App\Http\Controllers\FixedIncomeController;
 use App\Http\Controllers\FixedExpenseController;
 use App\Http\Controllers\CurrentIncomeController;
 use App\Http\Controllers\CurrentExpenseController;
-
+use App\Http\Controllers\CategoryController;
 //also added
 use App\Http\Controllers\AuthController;
 
@@ -57,3 +57,4 @@ Route::post('postfixedexpense',[FixedExpenseController::class,'store']);
 Route::post('postfixedincome',[FixedIncomeController::class,'store']);
 Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
 Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
+Route::get('categories',[CategoryController::class,'index']);

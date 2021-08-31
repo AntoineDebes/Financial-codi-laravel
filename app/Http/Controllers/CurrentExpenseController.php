@@ -45,7 +45,7 @@ class CurrentExpenseController extends Controller
         $recurring_expense ->description = $inputs['description'];
         $recurring_expense ->quantity= $inputs['quantity'];
         $recurring_expense ->currency=$inputs['currency'];
-        $recurring_expense ->category=$inputs['category'];
+        $recurring_expense ->category_id=$inputs['category_id'];
  
         $recurring_expense ->save();
         return response()->json(['success'=>true],200);

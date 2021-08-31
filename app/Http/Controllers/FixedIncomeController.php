@@ -46,7 +46,7 @@ class FixedIncomeController extends Controller
        $fixed_income->description = $inputs['description'];
        $fixed_income->quantity= $inputs['quantity'];
        $fixed_income->currency=$inputs['currency'];
-       $fixed_income->category=$inputs['category'];
+       $fixed_income->category_id=$inputs['category_id'];
 
        $fixed_income->save();
        return response()->json(['success'=>true],200);

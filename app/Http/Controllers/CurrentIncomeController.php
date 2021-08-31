@@ -45,7 +45,7 @@ class CurrentIncomeController extends Controller
         $recurring_income->description = $inputs['description'];
         $recurring_income->quantity= $inputs['quantity'];
         $recurring_income->currency=$inputs['currency'];
-        $recurring_income->category=$inputs['category'];
+        $recurring_income->category_id=$inputs['category_id'];
  
         $recurring_income->save();
         return response()->json(['success'=>true],200);
