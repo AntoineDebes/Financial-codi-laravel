@@ -28,15 +28,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/product',[ProductController::class, 'index']);
-Route::get('/admin',[AdminsController::class, 'index']);
-
-Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
-Route::get('/currentincome',[CurrentIncomeController::class,'index']);
-Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
-
-
-
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -50,11 +41,23 @@ Route::group([
     Route::get('user-profile', [AuthController::class, 'userProfile']);
 });
 
-Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);
-Route::delete('/fixedexpense',[FixedExpenseController::class,'destroy']);
-Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
-Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
+
 Route::post('postfixedexpense',[FixedExpenseController::class,'store']);
 Route::post('postfixedincome',[FixedIncomeController::class,'store']);
 Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
 Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('/fixedincome',[FixedIncomeController::class,'index']);
+    Route::get('/product',[ProductController::class, 'index']);
+    Route::get('/admin',[AdminsController::class, 'index']);
+    Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
+    Route::get('/currentincome',[CurrentIncomeController::class,'index']);
+    Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
+
+
+    Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);
+    Route::delete('/fixedexpense',[FixedExpenseController::class,'destroy']);
+    Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
+    Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
+});

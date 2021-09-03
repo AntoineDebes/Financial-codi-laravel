@@ -40,7 +40,7 @@ class AuthController extends Controller
         }
 
         return $this->createNewToken($token);
-      
+
     }
 
     /**
@@ -81,7 +81,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
- 
+
     /**
      * Log the user out (Invalidate the token).
      *
