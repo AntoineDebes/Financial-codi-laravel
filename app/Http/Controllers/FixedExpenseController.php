@@ -115,4 +115,13 @@ class FixedExpenseController extends Controller
             return  response()->json($ids);
         }
     }
+
+    public function getcategories()
+    {
+
+        $items = Fixed_expense::all();
+        return response()->json([
+        'success'=>true,
+        'items'=>$items],200);
+    }
 }
