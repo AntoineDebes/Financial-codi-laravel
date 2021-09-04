@@ -11,6 +11,8 @@ use App\Http\Controllers\CurrentExpenseController;
 
 //also added
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReportController;
 
 
 /*
@@ -34,6 +36,10 @@ Route::get('/fixedincome',[FixedIncomeController::class,'index']);
 Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
 Route::get('/currentincome',[CurrentIncomeController::class,'index']);
 Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
+
+Route::get('/getcategory',[CategoryController::class,'index']);
+
+Route::get('/getamount/{id}',[CategoryController::class,'getamount']);
 
 
 
