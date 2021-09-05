@@ -15,7 +15,7 @@ class FixedIncomeController extends Controller
      */
     public function index()
     {
-        
+
         $items = Fixed_income::all();
         return response()->json([
         'success'=>true,
@@ -95,8 +95,8 @@ class FixedIncomeController extends Controller
     public function destroy(Request $request)
     {
 
-        // dd($request->all()); 
-        // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+        // dd($request->all());
+         file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
         $ids = $request->ids;
 
         try {
@@ -112,4 +112,3 @@ class FixedIncomeController extends Controller
         }
     }
 }
- 

@@ -33,7 +33,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function () {
-    Route::get('/fixedincome',[FixedIncomeController::class,'index']);
+
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);
@@ -48,6 +48,7 @@ Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
 Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
+
     Route::get('/fixedincome',[FixedIncomeController::class,'index']);
     Route::get('/product',[ProductController::class, 'index']);
     Route::get('/admin',[AdminsController::class, 'index']);
