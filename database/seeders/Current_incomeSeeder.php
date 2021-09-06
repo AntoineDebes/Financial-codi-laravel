@@ -21,7 +21,7 @@ class Current_incomeSeeder extends Seeder
                 'quantity' => 10,
                 'description' => Str::random(10),
                 'currency'=> '$',
-                'category'=> 'test',
+                'category_id'=> 1231,
             ]);
             }
     }

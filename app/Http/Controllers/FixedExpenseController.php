@@ -99,8 +99,8 @@ class FixedExpenseController extends Controller
     public function destroy(Request $request)
     {
 
-        // dd($request->all()); 
-        // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+//         dd($request->all());
+         file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
         $ids = $request->ids;
 
         try {

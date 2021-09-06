@@ -11,7 +11,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -87,7 +87,7 @@ class ProductController extends Controller
     public function destroy(Request $request)
     {
 
-        // dd($request->all()); 
+        // dd($request->all());
         file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
         $ids = $request->ids;
 

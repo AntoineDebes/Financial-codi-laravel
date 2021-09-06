@@ -16,10 +16,8 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $items = Category::all();
-<<<<<<< HEAD
         return response()->json([
         'success'=>true,
         'items'=>$items],200);
@@ -131,9 +129,6 @@ class CategoryController extends Controller
         $items=[$currentexp,$currentinc,$fixedexp,$fixedinc];
      
         return response()->json($items,200);
-=======
-        return $items;
->>>>>>> c185acdb3a9a97f3765906ee22edf65348bf2fe8
     }
 
 

@@ -32,15 +32,15 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json($validator->errors(), 200);
         }
 
         if (!$token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Unauthorized'], 200);
         }
 
         return $this->createNewToken($token);
-      
+
     }
 
     /**
@@ -81,7 +81,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
- 
+
     /**
      * Log the user out (Invalidate the token).
      *

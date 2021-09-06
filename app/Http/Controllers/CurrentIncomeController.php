@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Current_income;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class CurrentIncomeController extends Controller
 {
@@ -46,7 +47,7 @@ class CurrentIncomeController extends Controller
         $recurring_income->quantity= $inputs['quantity'];
         $recurring_income->currency=$inputs['currency'];
         $recurring_income->category=$inputs['category'];
- 
+
         $recurring_income->save();
         return response()->json(['success'=>true],200);
     }
@@ -89,13 +90,13 @@ class CurrentIncomeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Current_income  $current_income
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request)
     {
 
-        // dd($request->all()); 
-        // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+        // dd($request->all());
+//         file_put_contents(__DIR__.'/test.json', json_encode($request));
         $ids = $request->ids;
 
         try {
