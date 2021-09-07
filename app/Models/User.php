@@ -57,6 +57,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+
     public function setPasswordAttribute($password)
     {
         if ( !empty($password) ) {

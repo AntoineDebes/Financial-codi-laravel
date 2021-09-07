@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,6 +18,7 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->guard = "api";
     }
 
     /**
@@ -33,11 +35,11 @@ class AuthController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 200);
+            return response()->json($validator->errors(), 422);
         }
         $credentials = $request->only('email', 'password');
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => $credentials], 200);
+            return response()->json(['error' => $credentials], 401);
         }
 
         return $this->createNewToken($token);
@@ -66,7 +68,7 @@ class AuthController extends Controller
 
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password' => Hash::make($request->password)]
+            ['password' => $request->password]
         ));
 
         return response()->json([
