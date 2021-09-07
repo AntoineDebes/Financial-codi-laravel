@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -31,12 +31,13 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
+
         if ($validator->fails()) {
             return response()->json($validator->errors(), 200);
         }
-
-        if (!$token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 200);
+        $credentials = $request->only('email', 'password');
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['error' => $credentials], 200);
         }
 
         return $this->createNewToken($token);
@@ -53,7 +54,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
+            'password' => 'required|string|min:6',
         ]);
 
         if ($validator->fails()) {
@@ -65,7 +66,7 @@ class AuthController extends Controller
 
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password' => bcrypt($request->password)]
+            ['password' => Hash::make($request->password)]
         ));
 
         return response()->json([
