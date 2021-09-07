@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Current_income;
+use App\Models\Category;
 use Illuminate\support\Str;
 
-class Current_incomeSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +16,8 @@ class Current_incomeSeeder extends Seeder
     public function run()
     {
         for($i=0;$i<10;$i++){
-            Current_income::create([
+            Category::create([
                 'title' => Str::random(10),
-                'quantity' => 10,
-                'description' => Str::random(10),
-                'currency'=> '$',
-                'category_id'=> 1231,
             ]);
         }
     }
