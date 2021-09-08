@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fixed_expense;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class FixedExpenseController extends Controller
 {
@@ -94,7 +95,7 @@ class FixedExpenseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Fixed_expense  $fixed_expense
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request)
     {

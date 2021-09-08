@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\support\Str;
 use App\Models\Fixed_expense;
@@ -21,7 +22,7 @@ class Fixed_expenseSeeder extends Seeder
                 'quantity' => 10,
                 'description' => Str::random(10),
                 'currency'=> '$',
-                'category_id'=> 123131,
+                "category_id" => Category::all()->random()->id,
             ]);
             }
     }
