@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Current_income;
 use Illuminate\Http\Request;
+use DateTime;
+use Carbon\Carbon;
+
 
 class CurrentIncomeController extends Controller
 {
@@ -40,15 +43,31 @@ class CurrentIncomeController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
+        $startDate = $inputs['startDate'];
+        $endDate = $inputs['endDate'];
+        $repetition = $inputs['repetition'];   
+        $date1 = new DateTime($startDate);
+        $date2 = new DateTime($endDate);
+        $difference_in_weeks = floor($date1->diff($date2)->days / 7);  
+        if($startDate>$endDate){
+        error_log("the start date should be before the end date");
+        return response()->json(['success'=>false],200);
+        }
+        else{
+        // $tets = $startDate->addDay();
+        $currentDateTime = Carbon::createFromFormat('m/d/y',$startDate);
+        
+        error_log($currentDateTime);
+           
         $recurring_income = new Current_income();
         $recurring_income->title = $inputs['title'];
         $recurring_income->description = $inputs['description'];
         $recurring_income->quantity= $inputs['quantity'];
         $recurring_income->currency=$inputs['currency'];
         $recurring_income->category_id=$inputs['category_id'];
- 
         $recurring_income->save();
         return response()->json(['success'=>true],200);
+        }
     }
 
     /**
