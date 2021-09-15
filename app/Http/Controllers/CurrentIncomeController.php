@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use DateTime;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 
 class CurrentIncomeController extends Controller
@@ -35,39 +36,58 @@ class CurrentIncomeController extends Controller
      */
     public function store(Request $request)
     {
-        $inputs = $request->all();
-        $startDate = $inputs['startDate'];
-        $endDate = $inputs['endDate'];
-        $repetition = $inputs['repetition'];
-        $date1 = new DateTime($startDate);
-        $date2 = new DateTime($endDate);
-        if($repetition == 'weekly'){
-            $numberOfDays =7 ;
-        }else if ($repetition == 'monthly'){
-            $numberOfDays =30 ;
+        $validator= Validator::make($request->all(), [
+            'startDate'=>'required|date',
+            'repetition'=>'required|string',
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'quantity' => 'required|integer',
+            'currency' => 'required|string',
+            'category_id' => 'required',
+            'endDate'=>'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message'=> 'you must fill all the fields'], 200);
         }
-        else  return response()->json(['success'=>false, 'message'=> 'Please select a period of time '],400);
-        $difference_in_weeks = floor($date1->diff($date2)->days / $numberOfDays);
-        if($startDate>$endDate){
-        error_log("the start date should be before the end date");
-        return response()->json(['success'=>false , 'message'=> 'the start date should be before the end date'],400);
-        }
-        else {
-            $currentDateTime = Carbon::parse(strtotime($startDate))->format('Y-m-d');
-            for($i= 0; $i < $difference_in_weeks; $i++){
-                error_log("hi");
-                $recurring_income = new Current_income();
-                $recurring_income->title = $inputs['title'];
-                $recurring_income->description = $inputs['description'];
-                $recurring_income->quantity = $inputs['quantity'];
-                $recurring_income->currency = $inputs['currency'];
-                $recurring_income->category_id = $inputs['category_id'];
-                $recurring_income->date = $currentDateTime;
-                $recurring_income->save();
-                $currentDateTime= Carbon::parse(strtotime($currentDateTime))->addDays($numberOfDays);
+        try {
 
+
+            $inputs = $request->all();
+            $startDate = $inputs['startDate'];
+            $endDate = $inputs['endDate'];
+            $repetition = $inputs['repetition'];
+            error_log($startDate);
+            error_log($endDate);
+            error_log($repetition);
+            $date1 = new DateTime($startDate);
+            $date2 = new DateTime($endDate);
+            if ($repetition == 'weekly') {
+                $numberOfDays = 7;
+            } else if ($repetition == 'monthly') {
+                $numberOfDays = 30;
+            } else  return response()->json(['success' => false, 'message' => 'Please select a period of time '], 400);
+            $difference_in_weeks = floor($date1->diff($date2)->days / $numberOfDays);
+            if ($startDate > $endDate) {
+                error_log("the start date should be before the end date");
+                return response()->json(['success' => false, 'message' => 'the start date should be before the end date'], 200);
+            } else {
+                $currentDateTime = Carbon::parse(strtotime($startDate))->format('Y-m-d');
+                for ($i = 0; $i < $difference_in_weeks; $i++) {
+                    $recurring_income = new Current_income();
+                    $recurring_income->title = $inputs['title'];
+                    $recurring_income->description = $inputs['description'];
+                    $recurring_income->quantity = $inputs['quantity'];
+                    $recurring_income->currency = $inputs['currency'];
+                    $recurring_income->category_id = $inputs['category_id'];
+                    $recurring_income->date = $currentDateTime;
+                    $recurring_income->save();
+                    $currentDateTime = Carbon::parse(strtotime($currentDateTime))->addDays($numberOfDays);
+
+                }
+                return response()->json(['success' => true, 'message' => 'added successfully'], 200);
             }
-            return response()->json(['success' => true], 200);
+        }catch (\Exception $e){
+            error_log($e->getMessage());
         }
     }
 

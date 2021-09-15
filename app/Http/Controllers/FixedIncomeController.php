@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Fixed_income;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use League\Flysystem\Exception;
 
 class FixedIncomeController extends Controller
@@ -15,7 +15,7 @@ class FixedIncomeController extends Controller
      */
     public function index()
     {
-        
+
         $items = Fixed_income::all();
         return response()->json([
         'success'=>true,
@@ -36,20 +36,34 @@ class FixedIncomeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-       $inputs = $request->all();
-       $fixed_income = new Fixed_income();
-       $fixed_income->title = $inputs['title'];
-       $fixed_income->description = $inputs['description'];
-       $fixed_income->quantity= $inputs['quantity'];
-       $fixed_income->currency=$inputs['currency'];
-       $fixed_income->category_id=$inputs['category_id'];
-
-       $fixed_income->save();
-       return response()->json(['success'=>true],200);
+        $validator= Validator::make($request->all(), [
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'quantity' => 'required|integer',
+            'currency' => 'required|string',
+            'category_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message'=> 'you must fill all the fields'], 200);
+        }
+        try {
+            $inputs = $request->all();
+            $fixed_expense = new Fixed_income();
+            $fixed_expense->title = $inputs['title'];
+            $fixed_expense->description = $inputs['description'];
+            $fixed_expense->quantity = $inputs['quantity'];
+            $fixed_expense->currency = $inputs['currency'];
+            $fixed_expense->category_id = $inputs['category_id'];
+            $fixed_expense->save();
+            return response()->json(['success' => true, 'message' => 'added successfully'], 200);
+        }
+        catch (\Exception $e){
+            error_log($e->getMessage());
+        }
     }
 
     /**
@@ -95,7 +109,7 @@ class FixedIncomeController extends Controller
     public function destroy(Request $request)
     {
 
-        // dd($request->all()); 
+        // dd($request->all());
         // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
         $ids = $request->ids;
 
@@ -112,4 +126,3 @@ class FixedIncomeController extends Controller
         }
     }
 }
- 
