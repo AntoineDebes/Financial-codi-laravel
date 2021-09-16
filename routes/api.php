@@ -9,8 +9,13 @@ use App\Http\Controllers\FixedExpenseController;
 use App\Http\Controllers\CurrentIncomeController;
 use App\Http\Controllers\CurrentExpenseController;
 use App\Http\Controllers\CategoryController;
+<<<<<<< HEAD
+=======
+
+>>>>>>> Dev
 //also added
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReportController;
 
 
 /*
@@ -24,16 +29,14 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('/product',[ProductController::class, 'index']);
-Route::get('/admin',[AdminsController::class, 'index']);
-Route::get('/fixedincome',[FixedIncomeController::class,'index']);
-Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
-Route::get('/currentincome',[CurrentIncomeController::class,'index']);
-Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
+
+Route::get('/getcategory',[CategoryController::class,'index']);
+
+Route::get('/getamount/{id}',[CategoryController::class,'getamount']);
 
 
 
@@ -42,6 +45,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function () {
+
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);
@@ -49,12 +53,30 @@ Route::group([
     Route::get('user-profile', [AuthController::class, 'userProfile']);
 });
 
-Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);
-Route::delete('/fixedexpense',[FixedExpenseController::class,'destroy']);
-Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
-Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
+
 Route::post('postfixedexpense',[FixedExpenseController::class,'store']);
 Route::post('postfixedincome',[FixedIncomeController::class,'store']);
 Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
 Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
+<<<<<<< HEAD
 Route::get('categories',[CategoryController::class,'index']);
+=======
+
+Route::get('categories',[CategoryController::class,'index']);
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+
+    Route::get('/fixedincome',[FixedIncomeController::class,'index']);
+    Route::get('/product',[ProductController::class, 'index']);
+    Route::get('/admin',[AdminsController::class, 'index']);
+    Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
+    Route::get('/currentincome',[CurrentIncomeController::class,'index']);
+    Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
+
+
+    Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);
+    Route::delete('/fixedexpense',[FixedExpenseController::class,'destroy']);
+    Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
+    Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
+});
+>>>>>>> Dev

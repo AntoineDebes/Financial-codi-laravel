@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Current_expense extends Model
 {
     use HasFactory;
+
+    protected $table= "current_expenses";
+    public function categories(){
+        return $this->belongsTo(Category::class, 'id');
+    }
+
 }

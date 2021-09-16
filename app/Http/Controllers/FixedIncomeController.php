@@ -115,7 +115,7 @@ class FixedIncomeController extends Controller
     {
 
         // dd($request->all());
-        // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+         file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
         $ids = $request->ids;
 
         try {

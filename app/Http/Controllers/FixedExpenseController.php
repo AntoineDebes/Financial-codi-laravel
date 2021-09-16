@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Fixed_expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Validator;
+=======
+use League\Flysystem\Exception;
+>>>>>>> Dev
 
 class FixedExpenseController extends Controller
 {
@@ -109,13 +113,18 @@ class FixedExpenseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Fixed_expense  $fixed_expense
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request)
     {
 
+<<<<<<< HEAD
         // dd($request->all());
         // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+=======
+//         dd($request->all());
+         file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+>>>>>>> Dev
         $ids = $request->ids;
 
         try {
@@ -129,5 +138,14 @@ class FixedExpenseController extends Controller
         catch(Exception $e) {
             return  response()->json($ids);
         }
+    }
+
+    public function getcategories()
+    {
+
+        $items = Fixed_expense::all();
+        return response()->json([
+        'success'=>true,
+        'items'=>$items],200);
     }
 }

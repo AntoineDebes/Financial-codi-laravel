@@ -10,12 +10,17 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
+<<<<<<< HEAD
         "nesbot/carbon": "^2.53",
         "tymon/jwt-auth": "^1.0"
+=======
+        "tymon/jwt-auth": "^1.0",
+      "ext-json": "*"
+>>>>>>> Dev
     },
     "require-dev": {
         "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.9.1",
+        "fakerphp/faker": "^1.15",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",

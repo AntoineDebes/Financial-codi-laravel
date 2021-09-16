@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use App\Models\Current_income;
 use Illuminate\support\Str;
@@ -21,8 +22,8 @@ class Current_incomeSeeder extends Seeder
                 'quantity' => 10,
                 'description' => Str::random(10),
                 'currency'=> '$',
-                'category'=> 'test',
+                "category_id" => Category::all()->random()->id,
             ]);
-            }
+        }
     }
 }

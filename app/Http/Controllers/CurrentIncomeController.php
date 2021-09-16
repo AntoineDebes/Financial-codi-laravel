@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Current_income;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use DateTime;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
+=======
+use League\Flysystem\Exception;
+>>>>>>> Dev
 
 class CurrentIncomeController extends Controller
 {
@@ -36,6 +40,7 @@ class CurrentIncomeController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $validator= Validator::make($request->all(), [
             'startDate'=>'required|date',
             'repetition'=>'required|string',
@@ -89,6 +94,18 @@ class CurrentIncomeController extends Controller
         }catch (\Exception $e){
             error_log($e->getMessage());
         }
+=======
+        $inputs = $request->all();
+        $recurring_income = new Current_income();
+        $recurring_income->title = $inputs['title'];
+        $recurring_income->description = $inputs['description'];
+        $recurring_income->quantity= $inputs['quantity'];
+        $recurring_income->currency=$inputs['currency'];
+        $recurring_income->category=$inputs['category'];
+
+        $recurring_income->save();
+        return response()->json(['success'=>true],200);
+>>>>>>> Dev
     }
 
     /**
@@ -119,13 +136,21 @@ class CurrentIncomeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Current_income  $current_income
+<<<<<<< HEAD
      * @return Response
+=======
+     * @return \Illuminate\Http\JsonResponse
+>>>>>>> Dev
      */
     public function destroy(Request $request)
     {
 
         // dd($request->all());
+<<<<<<< HEAD
         // file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+=======
+//         file_put_contents(__DIR__.'/test.json', json_encode($request));
+>>>>>>> Dev
         $ids = $request->ids;
 
         try {
