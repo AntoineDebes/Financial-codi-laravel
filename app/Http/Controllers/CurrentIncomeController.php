@@ -84,7 +84,7 @@ class CurrentIncomeController extends Controller
                     $currentDateTime = Carbon::parse(strtotime($currentDateTime))->addDays($numberOfDays);
 
                 }
-                return response()->json(['success' => true, 'message' => 'added successfully'], 200);
+                return response()->json(['success' => true, 'message' => 'added successfully'], 400);
             }
         }catch (\Exception $e){
             error_log($e->getMessage());
