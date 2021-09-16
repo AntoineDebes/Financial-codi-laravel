@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fixed_expense;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,18 +47,22 @@ class FixedExpenseController extends Controller
             'quantity' => 'required|integer',
             'currency' => 'required|string',
             'category_id' => 'required',
+            'date'=>'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['message'=> 'you must fill all the fields'], 200);
         }
         try {
             $inputs = $request->all();
+            $startDate = $inputs['date'];
+            $date = Carbon::parse(strtotime($startDate))->format('Y-m-d');
             $fixed_expense = new Fixed_expense();
             $fixed_expense->title = $inputs['title'];
             $fixed_expense->description = $inputs['description'];
             $fixed_expense->quantity = $inputs['quantity'];
             $fixed_expense->currency = $inputs['currency'];
             $fixed_expense->category_id = $inputs['category_id'];
+            $fixed_expense->date = $date;
             $fixed_expense->save();
             return response()->json(['success' => true, 'message' => 'added successfully'], 200);
         }
