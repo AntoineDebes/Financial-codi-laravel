@@ -66,7 +66,7 @@ class CurrentIncomeController extends Controller
                 $numberOfDays = 7;
             } else if ($repetition == 'monthly') {
                 $numberOfDays = 30;
-            } else  return response()->json(['success' => false, 'message' => 'Please select a period of time '], 400);
+            } else  return response()->json(['success' => false, 'message' => 'Please select a period of time '], 200);
             $difference_in_weeks = floor($date1->diff($date2)->days / $numberOfDays);
             if ($startDate > $endDate) {
                 error_log("the start date should be before the end date");
