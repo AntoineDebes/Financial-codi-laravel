@@ -17,12 +17,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(){
-        $items = Category::all();
-        return response()->json([
-        'success'=>true,
-        'items'=>$items],200);
-
-
+        $category = Category::all();
+        return $category;
     }
 
     public function getamount($id){
