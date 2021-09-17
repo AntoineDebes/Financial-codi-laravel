@@ -10,13 +10,8 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
-<<<<<<< HEAD
         "nesbot/carbon": "^2.53",
         "tymon/jwt-auth": "^1.0"
-=======
-        "tymon/jwt-auth": "^1.0",
-      "ext-json": "*"
->>>>>>> Dev
     },
     "require-dev": {
         "facade/ignition": "^2.5",
