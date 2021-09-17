@@ -9,10 +9,6 @@ use App\Http\Controllers\FixedExpenseController;
 use App\Http\Controllers\CurrentIncomeController;
 use App\Http\Controllers\CurrentExpenseController;
 use App\Http\Controllers\CategoryController;
-<<<<<<< HEAD
-=======
-
->>>>>>> Dev
 //also added
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReportController;
@@ -58,9 +54,7 @@ Route::post('postfixedexpense',[FixedExpenseController::class,'store']);
 Route::post('postfixedincome',[FixedIncomeController::class,'store']);
 Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
 Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
-<<<<<<< HEAD
 Route::get('categories',[CategoryController::class,'index']);
-=======
 
 Route::get('categories',[CategoryController::class,'index']);
 
@@ -79,4 +73,3 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
     Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
 });
->>>>>>> Dev

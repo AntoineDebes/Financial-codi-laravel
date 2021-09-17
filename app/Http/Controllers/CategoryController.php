@@ -16,12 +16,6 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-<<<<<<< HEAD
-    public function index()
-    {
-        $category = Category::all();
-        return $category;
-=======
     public function index(){
         $items = Category::all();
         return response()->json([
@@ -135,7 +129,6 @@ class CategoryController extends Controller
         $items=[$currentexp,$currentinc,$fixedexp,$fixedinc];
 
         return response()->json($items,200);
->>>>>>> Dev
     }
 
 
