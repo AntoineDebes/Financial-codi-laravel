@@ -9,6 +9,7 @@ use App\Http\Controllers\FixedExpenseController;
 use App\Http\Controllers\CurrentIncomeController;
 use App\Http\Controllers\CurrentExpenseController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GoalController;
 
 //also added
 use App\Http\Controllers\AuthController;
@@ -35,7 +36,8 @@ Route::get('/getcategory',[CategoryController::class,'index']);
 
 Route::get('/getamount/{id}',[CategoryController::class,'getamount']);
 
-
+Route::post('storeGoal',[GoalController::class,'storeGoal']);
+//Route::get('/result',[GoalController::class,'result']);
 
 Route::group([
     'middleware' => 'api',
