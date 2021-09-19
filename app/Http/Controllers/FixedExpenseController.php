@@ -42,6 +42,8 @@ class FixedExpenseController extends Controller
      */
     public function store(Request $request)
     {
+
+        file_put_contents(__DIR__.'/test.json', json_encode($request->all()));
         $validator= Validator::make($request->all(), [
             'title' => 'required|string',
             'description' => 'required|string',
@@ -116,7 +118,7 @@ class FixedExpenseController extends Controller
     {
 
 //         dd($request->all());
-         file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
+//         file_put_contents(__DIR__.'/test.json', json_encode($request->ids));
         $ids = $request->ids;
 
         try {
