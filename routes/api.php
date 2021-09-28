@@ -32,12 +32,15 @@ use App\Http\Controllers\ReportController;
 // });
 
 
-Route::get('/getcategory',[CategoryController::class,'index']);
+Route::get('/getcategory',[CategoryController::class,'get']);
 
 Route::get('/getamount/{id}',[CategoryController::class,'getamount']);
 
+
 Route::post('storeGoal',[GoalController::class,'storeGoal']);
-//Route::get('/result',[GoalController::class,'result']);
+Route::get('/goals',[GoalController::class,'index']);
+
+Route::get('/CheckGoal',[GoalController::class,'CheckGoal']);
 
 Route::group([
     'middleware' => 'api',
@@ -57,6 +60,7 @@ Route::post('postfixedexpense',[FixedExpenseController::class,'store']);
 Route::post('postfixedincome',[FixedIncomeController::class,'store']);
 Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
 Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
+Route::get('categories',[CategoryController::class,'index']);
 
 Route::get('categories',[CategoryController::class,'index']);
 

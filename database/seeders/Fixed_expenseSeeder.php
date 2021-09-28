@@ -23,6 +23,7 @@ class Fixed_expenseSeeder extends Seeder
                 'description' => Str::random(10),
                 'currency'=> '$',
                 "category_id" => Category::all()->random()->id,
+                'date' => '2021-09-02',
             ]);
             }
     }
