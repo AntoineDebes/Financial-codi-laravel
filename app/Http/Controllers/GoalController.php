@@ -25,12 +25,15 @@ class GoalController extends Controller
        
           //$currentexp first value
          $currentexp= Current_expense::all()
-         ->where('date','>=',$start && 'date','<=',$end) ;
+         ->where(  'date','>=',$start )
+         ->where('date','<=',$end ) ;
      
             if(!empty($currentexp)){
              $items = array();
              foreach ($currentexp as $p) {
+               
                  $items[] = $p->quantity;
+                 
                }
                $currentexp=$items;
                $items=[];
@@ -45,7 +48,7 @@ class GoalController extends Controller
                  }
                 
                  $currentexp=$sum;
-                // error_log($currentexp);
+                 error_log($currentexp);
             }
             else{
                $currentexp=0;
@@ -53,12 +56,13 @@ class GoalController extends Controller
           
             //////second value
             $currentinc = Current_income::all()
-            ->where('date','>=',$start && 'date','<=',$end) ;
+            ->where(  'date','>=',$start )
+            ->where('date','<=',$end ) ;
             if(!empty($currentinc)){
                $items = array();
                foreach ($currentinc as $p) {
                    $items[] = $p->quantity;
-   
+                  
                    }
                  $currentinc=$items;
                  $items=[];
@@ -72,19 +76,21 @@ class GoalController extends Controller
                    }
    
                    $currentinc=$sum;
-                   //error_log($currentinc);
+                   error_log($currentinc);
               }
               else{
                  $currentinc=0;
               }
            //third value
             $fixedexp= Fixed_expense::all()
-            ->where('date','>=',$start && 'date','<=',$end) ;
+            ->where(  'date','>=',$start )
+            ->where('date','<=',$end ) ;
             if(!empty($fixedexp)){
                $items = array();
                foreach ($fixedexp as $p) {
+                
                    $items[] = $p->quantity;
-   
+                  
                    }
                  $fixedexp=$items;
                  $items=[];
@@ -96,7 +102,7 @@ class GoalController extends Controller
                     $sum=$sum+$fixedexp[$i];
                     $i++;
                    }
-                   //error_log($sum);
+                   error_log($sum);
                    $fixedexp=$sum;
               }
               else{
@@ -104,12 +110,13 @@ class GoalController extends Controller
               }
            //forth value
            $fixedinc =Fixed_income::all()
-           ->where('date','>=',$start && 'date','<=',$end) ;
+           ->where(  'date','>=',$start )
+           ->where('date','<=',$end ) ;
            if(!empty($fixedinc)){
                $items = array();
                foreach ($fixedinc as $p) {
                    $items[] = $p->quantity;
-   
+                   
                    }
                  $fixedinc=$items;
                 
@@ -123,7 +130,7 @@ class GoalController extends Controller
                    }
                    //echo $sum;
                    $fixedinc=$sum;
-                   //error_log($fixedinc);
+                   error_log($fixedinc);
               }
               else{
                  $fixedinc=0;
