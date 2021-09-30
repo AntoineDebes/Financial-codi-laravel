@@ -14,30 +14,30 @@ class GoalController extends Controller
         return $goal;
     }
 
-   public function CheckGoal(){ 
+   public function CheckGoal(){
      $goalarray=array();
      $goals= Goal::all();
-  
-     foreach ($goals as $goal) 
-     {  
+
+     foreach ($goals as $goal)
+     {
          $start=$goal->start_date;
          $end=$goal->end_date;
-       
+
           //$currentexp first value
          $currentexp= Current_expense::all()
          ->where(  'date','>=',$start )
          ->where('date','<=',$end ) ;
-     
+
             if(!empty($currentexp)){
              $items = array();
              foreach ($currentexp as $p) {
-               
+
                  $items[] = $p->quantity;
-                 
+
                }
                $currentexp=$items;
                $items=[];
- 
+
                  $length = sizeof($currentexp);
                  $i = 0;
                  $sum=0;
@@ -46,14 +46,14 @@ class GoalController extends Controller
                   $sum=$sum+$currentexp[$i];
                   $i++;
                  }
-                
+
                  $currentexp=$sum;
                  error_log($currentexp);
             }
             else{
                $currentexp=0;
-            } 
-          
+            }
+
             //////second value
             $currentinc = Current_income::all()
             ->where(  'date','>=',$start )
@@ -62,7 +62,7 @@ class GoalController extends Controller
                $items = array();
                foreach ($currentinc as $p) {
                    $items[] = $p->quantity;
-                  
+
                    }
                  $currentinc=$items;
                  $items=[];
@@ -74,7 +74,7 @@ class GoalController extends Controller
                     $sum=$sum+$currentinc[$i];
                     $i++;
                    }
-   
+
                    $currentinc=$sum;
                    error_log($currentinc);
               }
@@ -88,9 +88,9 @@ class GoalController extends Controller
             if(!empty($fixedexp)){
                $items = array();
                foreach ($fixedexp as $p) {
-                
+
                    $items[] = $p->quantity;
-                  
+
                    }
                  $fixedexp=$items;
                  $items=[];
@@ -116,10 +116,10 @@ class GoalController extends Controller
                $items = array();
                foreach ($fixedinc as $p) {
                    $items[] = $p->quantity;
-                   
+
                    }
                  $fixedinc=$items;
-                
+
                    $length = sizeof($fixedinc);
                    $i = 0;
                    $sum=0;
@@ -143,10 +143,10 @@ class GoalController extends Controller
             $final= $answer - $goal->amount ;
             error_log($final);
             array_push($goalarray,$final);
-           
-       
+
+
      }//end of for each
-     
+
      return $goalarray;
    }//end  of the checkgoal
     ////////////////////store the goal of the company/////////////////////////
@@ -159,7 +159,7 @@ class GoalController extends Controller
          $goal->name = $inputs['name'];
          $goal->amount = $inputs['amount'];
          $goal->start_date= $inputs['start_date'];
-         $goal->end_date=$inputs['end_date'];  
+         $goal->end_date=$inputs['end_date'];
          $goal->save();
          return response()->json([
             'success'=>true],200);
@@ -168,9 +168,9 @@ class GoalController extends Controller
         foreach ($goals as $p) {
                  $p->start_date;
             error_log($p->start_date);
-                     if( ($inputs['start_date'] < $p->start_date && $inputs['end_date'] > $p->end_date ) ||  
-                     ( $inputs['start_date'] < $p->start_date && $inputs['end_date'] > $p->end_date   )   ) 
-                     {    
+                     if( ($inputs['start_date'] < $p->start_date && $inputs['end_date'] > $p->end_date ) ||
+                     ( $inputs['start_date'] < $p->start_date && $inputs['end_date'] > $p->end_date   )   )
+                     {
                         return response()->json([
                               'success'=>false],404);
 
@@ -180,20 +180,16 @@ class GoalController extends Controller
                         $goal->name = $inputs['name'];
                         $goal->amount = $inputs['amount'];
                         $goal->start_date= $inputs['start_date'];
-                        $goal->end_date=$inputs['end_date'];  
+                        $goal->end_date=$inputs['end_date'];
                         $goal->save();
                         return response()->json([
                            'success'=>true],200);
                      }
 
 
-          }   
+          }
     }
-
-
-
-
-
-
-
 }
+
+
+
