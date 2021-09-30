@@ -20,6 +20,12 @@ class CategoryController extends Controller
         $category = Category::all(); 
         return $category;
     }
+    public function getCategory(){
+        $items = Category::all();
+        return response()->json([
+        'success'=>true,
+        'items'=>$items],200);
+    }
 
     public function getamount($id){
 
