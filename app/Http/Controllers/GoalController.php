@@ -152,6 +152,7 @@ class GoalController extends Controller
     ////////////////////store the goal of the company/////////////////////////
     public function storeGoal(Request $request)
     {
+        file_put_contents(__DIR__.'/test.json', json_encode($request->all()));
        $inputs = $request->all();
        $goals= Goal::all();
        if( $goals->isEmpty() ){

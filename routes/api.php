@@ -32,7 +32,7 @@ use App\Http\Controllers\ReportController;
 // });
 
 Route::post('/addcategory',[CategoryController::class,'store']);
-Route::get('/getcategory',[CategoryController::class,'get']);
+Route::get('/getcategory',[CategoryController::class,'index']);
 
 Route::get('/getamount/{id}',[CategoryController::class,'getamount']);
 
