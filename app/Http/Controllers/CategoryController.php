@@ -17,7 +17,7 @@ class CategoryController extends Controller
      * @return Category[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\JsonResponse
      */
     public function index(){
-        $category = Category::all();
+        $category = Category::all(); 
         return $category;
     }
 

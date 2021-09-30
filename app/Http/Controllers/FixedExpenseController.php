@@ -15,7 +15,7 @@ class FixedExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request)
     {
 
         $items = Fixed_expense::all();
@@ -43,7 +43,7 @@ class FixedExpenseController extends Controller
     public function store(Request $request)
     {
 
-        file_put_contents(__DIR__.'/test.json', json_encode($request->all()));
+        // file_put_contents(__DIR__.'/test.json', json_encode($request->all()));
         $validator= Validator::make($request->all(), [
             'title' => 'required|string',
             'description' => 'required|string',

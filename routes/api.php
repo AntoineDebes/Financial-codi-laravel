@@ -58,7 +58,8 @@ Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
 Route::get('categories',[CategoryController::class,'index']);
 
 Route::get('categories',[CategoryController::class,'index']);
-Route::delete('/admin',[AdminsController::class,'destroy']);
+Route::get('/admin',[AdminsController::class, 'index']);
+
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 
@@ -67,11 +68,12 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
     Route::get('/currentincome',[CurrentIncomeController::class,'index']);
     Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
-    Route::get('/admin',[AdminsController::class, 'index']);
 
 
     Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);
     Route::delete('/fixedexpense',[FixedExpenseController::class,'destroy']);
     Route::delete('/currentincome',[CurrentIncomeController::class,'destroy']);
     Route::delete('/currentexpense',[CurrentExpenseController::class,'destroy']);
+    Route::delete('/admin',[AdminsController::class,'destroy']);
+
 });

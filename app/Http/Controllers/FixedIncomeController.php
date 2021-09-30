@@ -56,12 +56,18 @@ class FixedIncomeController extends Controller
             $inputs = $request->all();
             $startDate = $inputs['date'];
             $date = Carbon::parse(strtotime($startDate))->format('Y-m-d');
+            error_log($date);
             $fixed_expense = new Fixed_income();
             $fixed_expense->title = $inputs['title'];
+            error_log($inputs['title']);
             $fixed_expense->description = $inputs['description'];
+            error_log($inputs['description']);
             $fixed_expense->quantity = $inputs['quantity'];
+            error_log($inputs['quantity']);
             $fixed_expense->currency = $inputs['currency'];
+            error_log($inputs['currency']);
             $fixed_expense->category_id = $inputs['category_id'];
+            error_log($inputs['category_id']);  
             $fixed_expense->date = $date;
             $fixed_expense->save();
             return response()->json(['success' => true, 'message' => 'added successfully'], 200);

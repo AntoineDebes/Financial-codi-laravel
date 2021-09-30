@@ -20,9 +20,8 @@ class CurrentIncomeController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        // $categories = Category::all();
         $current_income = Current_income::all();
         return response()->json([
         'success'=>true,
