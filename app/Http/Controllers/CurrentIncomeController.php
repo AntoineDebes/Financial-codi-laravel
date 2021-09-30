@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Current_income;
+use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use DateTime;
@@ -21,7 +22,7 @@ class CurrentIncomeController extends Controller
      */
     public function index(): JsonResponse
     {
-
+        // $categories = Category::all();
         $current_income = Current_income::all();
         return response()->json([
         'success'=>true,
@@ -29,7 +30,7 @@ class CurrentIncomeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in sto    rage.
      *
      * @param Request $request
      * @return JsonResponse

@@ -28,6 +28,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        file_put_contents(__DIR__.'/test.json', json_encode($request->all()));
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
