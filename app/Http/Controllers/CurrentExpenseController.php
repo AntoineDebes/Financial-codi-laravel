@@ -13,7 +13,7 @@ class CurrentExpenseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -42,6 +42,7 @@ class CurrentExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        file_put_contents(__DIR__.'/test.json', json_encode($request->all()));
         $validator= Validator::make($request->all(), [
             'startDate'=>'required|date',
             'repetition'=>'required|string',

@@ -23,7 +23,6 @@ class Current_expenseSeeder extends Seeder
                 'description' => Str::random(10),
                 'currency'=> '$',
                 'category_id' => Category::all()->random()->id,
-                "category_title" => Category::all()->random()->title,
                 'date' => '2021-09-02',
 
             ]);
