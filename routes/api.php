@@ -54,18 +54,20 @@ Route::post('postfixedexpense',[FixedExpenseController::class,'store']);
 Route::post('postfixedincome',[FixedIncomeController::class,'store']);
 Route::post('postrecurringincome',[CurrentIncomeController::class,'store']);
 Route::post('postrecurringexpense',[CurrentExpenseController::class,'store']);
+
 Route::get('categories',[CategoryController::class,'index']);
 
 Route::get('categories',[CategoryController::class,'index']);
+Route::delete('/admin',[AdminsController::class,'destroy']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::get('/fixedincome',[FixedIncomeController::class,'index']);
     Route::get('/product',[ProductController::class, 'index']);
-    Route::get('/admin',[AdminsController::class, 'index']);
     Route::get('/fixedexpense',[FixedExpenseController::class,'index']);
     Route::get('/currentincome',[CurrentIncomeController::class,'index']);
     Route::get('/currentexpense',[CurrentExpenseController::class,'index']);
+    Route::get('/admin',[AdminsController::class, 'index']);
 
 
     Route::delete('/fixedincome',[FixedIncomeController::class,'destroy']);

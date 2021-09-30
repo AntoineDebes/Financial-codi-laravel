@@ -19,8 +19,7 @@ class CreateFixedExpensesTable extends Migration
             $table->text('description');
             $table->integer('quantity');
             $table->string('currency',10);
-            $table->foreignId('category_id')->constrained('categories');
-            $table->date('date');
+            $table->string('category_title')->constrained('categories');            $table->date('date');
             $table->timestamps();
         });
     }
