@@ -67,6 +67,7 @@ class FixedExpenseController extends Controller
             $fixed_expense->category_id = $inputs['category_id'];
             $fixed_expense->date = $date;
             $fixed_expense->save();
+
             return response()->json(['success' => true, 'message' => 'added successfully'], 200);
         }
         catch (\Exception $e){
