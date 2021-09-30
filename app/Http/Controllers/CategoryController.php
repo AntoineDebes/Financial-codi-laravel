@@ -8,6 +8,7 @@ use App\Models\Current_income;
 use App\Models\Fixed_expense;
 use App\Models\Fixed_income;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -152,7 +153,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator= Validator::make($request->all(), [
+            'category'=>'required|string',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message'=> 'you must fill the category name'], 200);
+        }
+        
+        try {
+               $inputs = $request->all();           
+                $cat= new Category();
+                $cat->title = $inputs['category'];
+                $cat->save();
+                return response()->json(['success' => true, 'message' => 'added successfully'], 200);
+            }catch (\Exception $e){
+            error_log($e->getMessage());
+        }
+
     }
 
     /**

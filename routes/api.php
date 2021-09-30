@@ -31,7 +31,7 @@ use App\Http\Controllers\ReportController;
 //     return $request->user();
 // });
 
-
+Route::post('/addcategory',[CategoryController::class,'store']);
 Route::get('/getcategory',[CategoryController::class,'get']);
 
 Route::get('/getamount/{id}',[CategoryController::class,'getamount']);
