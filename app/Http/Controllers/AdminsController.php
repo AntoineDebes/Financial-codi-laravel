@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admins;
+use App\Models\User;
 use Illuminate\Http\Request;
 use League\Flysystem\Exception;
 
@@ -15,7 +16,7 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        $admins = Admins::all();
+        $admins = User::all();
         return response()->json([
             'success'=>true,
             'items'=>$admins],200);
